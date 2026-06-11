@@ -1,45 +1,1256 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Juanette Catalene Lictaoa — General Virtual Assistant</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --red: #D23740;
+    --maroon: #6A1831;
+    --ink: #14080B;
+    --cream: #FBF5F2;
+    --paper: #FFFFFF;
+    --soft: #F4E8E5;
+    --rule: rgba(20, 8, 11, 0.10);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Lora", Georgia, serif;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-size: 17px;
+  }
+
+  h1, h2, h3, h4, .nun {
+    font-family: "Nunito", system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251, 245, 242, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 78px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: "Nunito", sans-serif;
+  }
+  .logo-mark {
+    width: 46px; height: 46px;
+    position: relative;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .logo-mark svg { width: 100%; height: 100%; display: block; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-name {
+    font-family: "Lora", serif; font-style: italic; font-weight: 600;
+    font-size: 19px; color: var(--maroon); letter-spacing: 0.01em;
+  }
+  .logo-role {
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 10.5px;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink);
+    margin-top: 5px;
+  }
+
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a {
+    font-family: "Nunito", sans-serif; font-weight: 700; font-size: 14px;
+    letter-spacing: 0.04em; color: var(--ink);
+    position: relative; padding: 4px 0;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: var(--maroon); color: #fff !important;
+    padding: 11px 22px !important; border-radius: 999px;
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 13px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: background .2s, transform .2s;
+  }
+  .nav-cta:hover { background: var(--red); transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  /* ============ HERO ============ */
+  .hero { padding: 56px 0 0; position: relative; overflow: hidden; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr 1.25fr; gap: 40px; align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "Nunito", sans-serif; font-weight: 700; font-size: 12px;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--maroon);
+    margin-bottom: 24px;
+  }
+  .eyebrow::before {
+    content: ""; width: 36px; height: 2px; background: var(--red);
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 5.6vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-weight: 900;
+  }
+  .hero h1 .script {
+    font-family: "Lora", serif; font-weight: 600; font-style: italic;
+    color: var(--red); font-size: 0.92em; letter-spacing: -0.01em;
+  }
+  .hero h1 .underline {
+    position: relative; display: inline-block;
+  }
+  .hero h1 .underline::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 6px;
+    height: 12px; background: rgba(210, 55, 64, 0.18); z-index: -1;
+  }
+  .hero-sub {
+    margin-top: 26px; max-width: 520px;
+    font-size: 19px; line-height: 1.65; color: rgba(20, 8, 11, 0.78);
+    font-family: "Lora", serif; font-weight: 500;
+  }
+
+  .hero-cta { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 14px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 16px 28px; border-radius: 999px;
+    transition: transform .2s, box-shadow .2s, background .2s;
+    cursor: pointer; border: 2px solid transparent;
+  }
+  .btn-primary {
+    background: var(--red); color: #fff;
+    box-shadow: 0 10px 24px -10px rgba(210, 55, 64, 0.6);
+  }
+  .btn-primary:hover { background: var(--maroon); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: var(--ink); border-color: var(--ink);
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--cream); }
+  .btn .arrow { transition: transform .2s; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .hero-stats {
+    margin-top: 48px;
+    display: flex; gap: 38px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+  .stat .num {
+    font-family: "Nunito", sans-serif; font-weight: 900; font-size: 34px;
+    color: var(--maroon); line-height: 1;
+  }
+  .stat .lbl {
+    font-family: "Lora", serif; font-style: italic; font-weight: 500;
+    font-size: 13px; color: rgba(20, 8, 11, 0.7); margin-top: 6px;
+    line-height: 1.3; max-width: 140px;
+  }
+
+  .hero-illu {
+    position: relative;
+  }
+  .hero-illu::before {
+    content: ""; position: absolute;
+    left: 50%; top: 50%; transform: translate(-50%, -45%);
+    width: 120%; height: 100%;
+    background: radial-gradient(ellipse at center, rgba(210, 55, 64, 0.07), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-illu img { width: 100%; height: auto; position: relative; z-index: 1; }
+
+  /* floating tag */
+  .float-tag {
+    position: absolute; z-index: 2;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 12px 16px; border-radius: 14px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 18px 40px -20px rgba(20, 8, 11, 0.2);
+    font-family: "Nunito", sans-serif;
+  }
+  .float-tag .dot { width: 10px; height: 10px; border-radius: 50%; background: #2ea745; box-shadow: 0 0 0 4px rgba(46,167,69,0.18); }
+  .float-tag .ttl { font-weight: 800; font-size: 13px; }
+  .float-tag .sub { font-size: 11px; color: rgba(20, 8, 11, 0.6); margin-top: 2px; font-weight: 600; }
+
+  .tag-1 { top: 14%; left: -8px; animation: floaty 6s ease-in-out infinite; }
+  .tag-2 { bottom: 22%; right: 0; animation: floaty 7s ease-in-out -2s infinite; }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* marquee divider */
+  .marquee {
+    margin-top: 40px;
+    background: var(--maroon); color: var(--cream);
+    overflow: hidden; padding: 18px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    transform: rotate(-1.2deg);
+    margin-left: -3%; margin-right: -3%;
+  }
+  .marquee-track {
+    display: flex; gap: 56px; white-space: nowrap;
+    animation: marquee 38s linear infinite;
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 22px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .marquee-track span { display: inline-flex; align-items: center; gap: 56px; }
+  .marquee-track .star { color: var(--red); font-size: 18px; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ============ SECTION ============ */
+  section { padding: 110px 0; position: relative; }
+  .sec-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 40px; margin-bottom: 64px;
+  }
+  .sec-head .l { max-width: 640px; }
+  .sec-num {
+    font-family: "Nunito", sans-serif; font-weight: 800;
+    font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--red);
+  }
+  .sec-title {
+    font-size: clamp(38px, 4.6vw, 62px);
+    line-height: 1.04; margin-top: 12px; letter-spacing: -0.022em;
+    font-weight: 900;
+  }
+  .sec-title em {
+    font-family: "Lora", serif; font-style: italic; font-weight: 600;
+    color: var(--maroon);
+  }
+  .sec-lede {
+    margin-top: 18px; font-family: "Lora", serif; font-weight: 500;
+    font-size: 18px; line-height: 1.6; color: rgba(20, 8, 11, 0.75);
+    max-width: 540px;
+  }
+
+  /* ============ ABOUT ============ */
+  .about-grid {
+    display: grid; grid-template-columns: 0.95fr 1.1fr; gap: 80px; align-items: start;
+  }
+  .about-card {
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 24px;
+    padding: 36px; position: relative;
+  }
+  .about-card .badge {
+    position: absolute; top: -16px; left: 32px;
+    background: var(--red); color: #fff;
+    padding: 8px 16px; border-radius: 999px;
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .about-card h3 {
+    font-size: 24px; margin-bottom: 14px;
+  }
+  .about-card p {
+    font-family: "Lora", serif; font-weight: 500; font-size: 16px;
+    line-height: 1.7; color: rgba(20, 8, 11, 0.78); margin: 0 0 12px;
+  }
+
+  .quick-facts {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px;
+  }
+  .qf {
+    background: var(--soft); border-radius: 14px; padding: 14px 16px;
+  }
+  .qf .k { font-family: "Nunito", sans-serif; font-weight: 800; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--maroon); }
+  .qf .v { font-family: "Lora", serif; font-weight: 600; font-size: 14px; margin-top: 4px; }
+
+  /* ============ SERVICES ============ */
+  .services { background: var(--paper); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .svc {
+    background: var(--cream); border-radius: 22px; padding: 32px 28px;
+    border: 1px solid var(--rule); position: relative;
+    transition: transform .25s, box-shadow .25s, background .25s;
+    overflow: hidden;
+  }
+  .svc:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -24px rgba(106, 24, 49, 0.3);
+  }
+  .svc-num {
+    font-family: "Nunito", sans-serif; font-weight: 900; font-size: 14px;
+    color: var(--red); letter-spacing: 0.18em;
+  }
+  .svc h3 {
+    font-size: 22px; margin-top: 18px; line-height: 1.2;
+  }
+  .svc p {
+    font-family: "Lora", serif; font-weight: 500; font-size: 14.5px;
+    line-height: 1.6; color: rgba(20, 8, 11, 0.72); margin: 12px 0 18px;
+  }
+  .svc ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 7px;
+  }
+  .svc li {
+    font-family: "Nunito", sans-serif; font-weight: 600; font-size: 13px;
+    color: rgba(20, 8, 11, 0.85); display: flex; align-items: center; gap: 10px;
+  }
+  .svc li::before {
+    content: ""; width: 6px; height: 6px; background: var(--red); border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ============ EXPERIENCE ============ */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px;
+    width: 2px; background: var(--rule);
+  }
+  .tl-item { position: relative; padding-bottom: 56px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -32px; top: 8px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--cream); border: 3px solid var(--red);
+  }
+  .tl-item.current::before {
+    background: var(--red);
+    box-shadow: 0 0 0 6px rgba(210, 55, 64, 0.18);
+  }
+  .tl-date {
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--maroon);
+  }
+  .tl-role {
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 24px;
+    margin-top: 6px; line-height: 1.2;
+  }
+  .tl-org {
+    font-family: "Lora", serif; font-style: italic; font-weight: 600;
+    font-size: 15px; color: var(--red); margin-top: 4px;
+  }
+  .tl-list {
+    margin-top: 16px; list-style: none; padding: 0;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .tl-list li {
+    font-family: "Lora", serif; font-weight: 500; font-size: 15px; line-height: 1.55;
+    color: rgba(20, 8, 11, 0.78);
+    padding-left: 22px; position: relative;
+  }
+  .tl-list li::before {
+    content: ""; position: absolute; left: 0; top: 9px;
+    width: 12px; height: 2px; background: var(--red);
+  }
+  .tl-tag {
+    display: inline-block; margin-top: 12px;
+    background: var(--soft); color: var(--maroon);
+    padding: 5px 12px; border-radius: 999px;
+    font-family: "Nunito", sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  .exp-grid {
+    display: grid; grid-template-columns: 0.5fr 1.2fr; gap: 60px;
+  }
+  .exp-side {
+    position: sticky; top: 100px; align-self: start;
+  }
+  .exp-side .big-num {
+    font-family: "Nunito", sans-serif; font-weight: 900;
+    font-size: 120px; line-height: 0.9; color: var(--red);
+    letter-spacing: -0.05em;
+  }
+  .exp-side .big-lbl {
+    font-family: "Lora", serif; font-style: italic; font-weight: 600;
+    font-size: 18px; margin-top: 12px; color: var(--ink);
+    max-width: 200px; line-height: 1.4;
+  }
+  .exp-side .mini {
+    margin-top: 28px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .mini-stat {
+    border-left: 2px solid var(--red); padding-left: 14px;
+  }
+  .mini-stat .mn {
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 22px;
+    color: var(--maroon); line-height: 1;
+  }
+  .mini-stat .ml {
+    font-family: "Lora", serif; font-weight: 500; font-size: 13px;
+    color: rgba(20, 8, 11, 0.7); margin-top: 4px; line-height: 1.3;
+  }
+
+  /* ============ SKILLS ============ */
+  .skills { background: var(--maroon); color: var(--cream); }
+  .skills .sec-num { color: #F4A2A8; }
+  .skills .sec-title { color: var(--cream); }
+  .skills .sec-title em { color: #FFC9CD; }
+  .skills .sec-lede { color: rgba(251, 245, 242, 0.75); }
+
+  .sk-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+  }
+  .sk-col h4 {
+    color: var(--cream); font-size: 18px;
+    padding-bottom: 14px; margin-bottom: 18px;
+    border-bottom: 1px solid rgba(251, 245, 242, 0.2);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .sk-col h4 .ic {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(251, 245, 242, 0.08); display: grid; place-items: center;
+    color: #FFC9CD; font-family: "Nunito"; font-weight: 900; font-size: 14px;
+  }
+  .sk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: rgba(251, 245, 242, 0.08);
+    border: 1px solid rgba(251, 245, 242, 0.15);
+    color: var(--cream); padding: 8px 14px; border-radius: 999px;
+    font-family: "Nunito", sans-serif; font-weight: 600; font-size: 13px;
+    transition: background .2s, transform .2s;
+  }
+  .chip:hover { background: var(--red); border-color: var(--red); transform: translateY(-2px); }
+
+  /* tools row */
+  .tools-row {
+    margin-top: 56px; padding-top: 36px;
+    border-top: 1px solid rgba(251, 245, 242, 0.15);
+  }
+  .tools-row .tlbl {
+    font-family: "Nunito"; font-weight: 800; font-size: 12px;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: #F4A2A8; margin-bottom: 24px;
+  }
+  .tools {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px;
+  }
+  .tool {
+    background: rgba(251, 245, 242, 0.06);
+    border: 1px solid rgba(251, 245, 242, 0.12);
+    border-radius: 14px; padding: 18px 12px;
+    text-align: center;
+    transition: background .2s;
+  }
+  .tool:hover { background: rgba(251, 245, 242, 0.12); }
+  .tool .ic {
+    width: 44px; height: 44px; margin: 0 auto 10px;
+    background: var(--cream); color: var(--maroon);
+    border-radius: 10px; display: grid; place-items: center;
+    font-family: "Nunito", sans-serif; font-weight: 900; font-size: 16px;
+  }
+  .tool .nm {
+    font-family: "Nunito", sans-serif; font-weight: 700; font-size: 12px;
+    color: var(--cream);
+  }
+
+  /* ============ EDU & CERTS ============ */
+  .credentials-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .cred-block {
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 24px;
+    padding: 40px;
+  }
+  .cred-block h3 {
+    font-size: 26px; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .cred-block h3::before {
+    content: ""; width: 6px; height: 28px; background: var(--red); border-radius: 3px;
+  }
+  .cred-item {
+    padding: 20px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .cred-item:last-child { border-bottom: 0; }
+  .cred-item .top {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px;
+  }
+  .cred-item .name {
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 16.5px;
+    line-height: 1.3;
+  }
+  .cred-item .yr {
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 0.16em; color: var(--red);
+    flex-shrink: 0;
+  }
+  .cred-item .from {
+    font-family: "Lora", serif; font-style: italic; font-weight: 500;
+    font-size: 14px; color: rgba(20, 8, 11, 0.65); margin-top: 4px;
+  }
+  .cred-honor {
+    display: inline-block; margin-top: 8px;
+    background: linear-gradient(135deg, var(--red), var(--maroon));
+    color: #fff; padding: 4px 10px; border-radius: 6px;
+    font-family: "Nunito"; font-weight: 800; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  /* ============ TRAINING SPOTLIGHT ============ */
+  .training {
+    background: linear-gradient(135deg, var(--red) 0%, var(--maroon) 100%);
+    color: #fff; padding: 80px 0;
+    position: relative; overflow: hidden;
+  }
+  .training::before {
+    content: "★"; position: absolute; right: -40px; top: -60px;
+    font-size: 320px; color: rgba(255, 255, 255, 0.06);
+    font-family: Georgia, serif; line-height: 1;
+  }
+  .training-inner {
+    display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center;
+    position: relative;
+  }
+  .training .label {
+    font-family: "Nunito", sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .training h2 {
+    color: #fff; font-size: clamp(36px, 4vw, 54px); margin-top: 14px;
+    line-height: 1.04;
+  }
+  .training h2 em {
+    font-family: "Lora", serif; font-style: italic; font-weight: 600;
+    color: #FFD9DC;
+  }
+  .training-features {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  .tf {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px; padding: 22px;
+  }
+  .tf .h {
+    font-family: "Nunito"; font-weight: 800; font-size: 28px; color: #fff;
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .tf .h .u { font-size: 14px; font-weight: 700; color: #FFD9DC; }
+  .tf .l {
+    font-family: "Lora", serif; font-weight: 500; font-size: 14px;
+    color: rgba(255, 255, 255, 0.85); margin-top: 6px; line-height: 1.4;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact { padding: 120px 0 80px; }
+  .contact-card {
+    background: var(--ink); color: var(--cream);
+    border-radius: 32px; padding: 72px 64px;
+    position: relative; overflow: hidden;
+  }
+  .contact-card::before {
+    content: ""; position: absolute; right: -100px; top: -100px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, var(--red), transparent 70%);
+    opacity: 0.4;
+  }
+  .contact-card::after {
+    content: ""; position: absolute; left: -80px; bottom: -120px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, var(--maroon), transparent 70%);
+    opacity: 0.5;
+  }
+  .contact-inner { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+  .contact h2 {
+    color: var(--cream); font-size: clamp(38px, 4.4vw, 58px);
+    line-height: 1.04; letter-spacing: -0.02em;
+  }
+  .contact h2 em {
+    font-family: "Lora", serif; font-style: italic; font-weight: 600;
+    color: #FFC9CD;
+  }
+  .contact .lede {
+    font-family: "Lora", serif; font-weight: 500; font-size: 17px;
+    color: rgba(251, 245, 242, 0.75); margin-top: 20px; max-width: 460px;
+    line-height: 1.6;
+  }
+  .contact-links {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .clink {
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(251, 245, 242, 0.05);
+    border: 1px solid rgba(251, 245, 242, 0.12);
+    padding: 18px 22px; border-radius: 16px;
+    transition: background .2s, transform .2s, border-color .2s;
+  }
+  .clink:hover { background: rgba(251, 245, 242, 0.1); border-color: var(--red); transform: translateX(4px); }
+  .clink .ic {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: var(--red); color: #fff;
+    display: grid; place-items: center; font-weight: 900;
+    font-family: "Nunito"; font-size: 16px; flex-shrink: 0;
+  }
+  .clink .meta { display: flex; flex-direction: column; min-width: 0; }
+  .clink .k { font-family: "Nunito"; font-weight: 700; font-size: 11px;
+    color: #F4A2A8; letter-spacing: 0.2em; text-transform: uppercase; }
+  .clink .v { font-family: "Nunito"; font-weight: 600; font-size: 15px;
+    color: var(--cream); margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 32px 0 40px; border-top: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  footer .fl {
+    font-family: "Lora", serif; font-style: italic; font-weight: 500;
+    font-size: 14px; color: rgba(20, 8, 11, 0.6);
+  }
+  footer .fr {
+    font-family: "Nunito"; font-weight: 700; font-size: 12px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(20, 8, 11, 0.6);
+  }
+
+  /* small */
+  @media (max-width: 900px) {
+    .hero-grid, .about-grid, .exp-grid, .sk-grid, .credentials-grid, .training-inner, .contact-inner {
+      grid-template-columns: 1fr;
+    }
+    .services-grid { grid-template-columns: 1fr; }
+    .tools { grid-template-columns: repeat(3, 1fr); }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .exp-side { position: static; }
+    .contact-card { padding: 48px 28px; }
+    .sec-head { flex-direction: column; align-items: flex-start; }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Juanette Catalene Lictaoa</h1>
-    <p>Front-end Developer | Web Designs</p>
-  </header>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p>Hello! I’m a passionate developer with experience in building modern websites and web applications.</p>
-  </section>
+<!-- ================ NAV ================ -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo" aria-label="Juanette Catalene Lictaoa">
+      <span class="logo-mark" aria-hidden="true">
+        <!-- Hand-built monogram -->
+        <svg viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="logoG" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#D23740"/>
+              <stop offset="1" stop-color="#6A1831"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="46" fill="url(#logoG)"/>
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#14080B" stroke-width="2"/>
+          <!-- J monogram -->
+          <text x="50" y="64" text-anchor="middle"
+            font-family="Lora, serif" font-style="italic" font-weight="600"
+            font-size="46" fill="#FBF5F2">j</text>
+          <!-- small accent dot -->
+          <circle cx="74" cy="26" r="5" fill="#FBF5F2"/>
+        </svg>
+      </span>
+      <span class="logo-text">
+        <span class="logo-name">Juanette Catalene</span>
+        <span class="logo-role">General Virtual Assistant</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="nav-cta">Let's Talk →</a>
+    </div>
+  </div>
+</nav>
 
-  <section class="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li>
-        <strong>Procurement System</strong> – A Laravel app with email automation and API integrations.
-      </li>
-      <li>
-        <strong>LMS Platform</strong> – Built with Laravel, Vue.js and QR code module.
-      </li>
-      <li>
-        <strong>Dental Website</strong> – WordPress site with custom booking features.
-      </li>
-    </ul>
-  </section>
+<!-- ================ HERO ================ -->
+<header id="top" class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow" style="width: 480px">GENERAL VIRTUAL ASSISTANT | OPEN FOR WORK</div>
+        <h1>
+          Calm hands<br/>
+          for <span class="underline">busy</span><br/>
+          inboxes &amp; <span class="script">to-do lists.</span>
+        </h1>
+        <p class="hero-sub">
+          Hi, I'm <strong style="color: rgb(210, 55, 64)">Juanette</strong> — a detail-oriented administrative
+          professional from Agoo, La Union. I keep documents flowing, calendars
+          tidy, and operations running quietly in the background so founders
+          and executives can focus on the work that matters.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Hire Me <span class="arrow">→</span></a>
+          <a href="#experience" class="btn btn-ghost">See My Work</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="num">4,700+</div>
+            <div class="lbl">executive documents managed</div>
+          </div>
+          <div class="stat">
+            <div class="num">30+</div>
+            <div class="lbl">agencies &amp; LGUs coordinated</div>
+          </div>
+          <div class="stat">
+            <div class="num">2+</div>
+            <div class="lbl">years admin experience</div>
+          </div>
+        </div>
+      </div>
 
-  <section class="contact">
-    <h2>Contact</h2>
-    <p>Email: juanettecataleneb.lictaoa@gmail.com</p>
-    <p>GitHub: <a href="https://github.com/JuanetteCataleneLictaoa" target="_blank">Juanette Catalene Lictaoa</a></p>
-  </section>
+      <div class="hero-illu">
+        <div class="float-tag tag-1" style="border-width: 1px; padding: 12px 16px; justify-content: flex-start; flex-direction: row; text-align: left; margin: -55px 0px 0px">
+          <span class="dot"></span>
+          <div>
+            <div class="ttl">Available Now</div>
+            <div class="sub">Remote · AU / US / PH hours</div>
+          </div>
+        </div>
+        <div class="float-tag tag-2">
+          <div style="font-family:Nunito;font-weight:900;color:#D23740;font-size:18px;">★ 15h</div>
+          <div>
+            <div class="ttl">GVA Certified</div>
+            <div class="sub">Freelance Academy</div>
+          </div>
+        </div>
+        <img src="assets/home-illustration.png" alt="Illustration of Juanette at a tidy workspace" />
+      </div>
+    </div>
+  </div>
 
-  <footer>
-    <p>© 2025 juanettecataleneb</p>
-  </footer>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>
+        Executive Assistance <em class="star">✦</em>
+        Document Control <em class="star">✦</em>
+        Email &amp; Calendar Management <em class="star">✦</em>
+        Procurement Support <em class="star">✦</em>
+        Stakeholder Coordination <em class="star">✦</em>
+        Report Preparation <em class="star">✦</em>
+      </span>
+      <span>
+        Executive Assistance <em class="star">✦</em>
+        Document Control <em class="star">✦</em>
+        Email &amp; Calendar Management <em class="star">✦</em>
+        Procurement Support <em class="star">✦</em>
+        Stakeholder Coordination <em class="star">✦</em>
+        Report Preparation <em class="star">✦</em>
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- ================ ABOUT ================ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="l">
+        <div class="sec-num">01 · About</div>
+        <h2 class="sec-title">A reliable second pair of <em>hands</em> for your business.</h2>
+      </div>
+      <p class="sec-lede">Two years inside a regional government office taught me how to triage the urgent from the important, draft a memo that actually gets signed, and never let a deadline slip.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="badge">Hello!</div>
+        <h3>Why I love this work</h3>
+        <p>
+          I'm Juanette — a Magna Cum Laude IT graduate who found her stride
+          in administration. I love the small wins: a zero-error inbox, a
+          spotless filing system, a meeting that starts on time.
+        </p>
+        <p>
+          After completing my 15-hour General Virtual Assistant training with
+          Freelance Academy, I'm bringing that same care to remote teams who
+          need a steady, organized partner.
+        </p>
+
+        <div class="quick-facts">
+          <div class="qf"><div class="k">Based In</div><div class="v">Agoo, La Union 🇵🇭</div></div>
+          <div class="qf"><div class="k">Working Hours</div><div class="v">AU · US · PH</div></div>
+          <div class="qf"><div class="k">Languages</div><div class="v">English, Filipino</div></div>
+          <div class="qf"><div class="k">Engagement</div><div class="v">Full-time</div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-num" style="color:var(--maroon);">My Approach</div>
+        <h3 class="nun" style="font-size:32px;margin-top:14px;line-height:1.2;">
+          Three things I never compromise on.
+        </h3>
+
+        <div style="margin-top:32px;display:flex;flex-direction:column;gap:28px;">
+          <div style="display:flex;gap:20px;">
+            <div style="flex-shrink:0;width:54px;height:54px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-family:Nunito;font-weight:900;font-size:20px;color:var(--maroon);">01</div>
+            <div>
+              <h4 style="font-size: 18px; color: rgb(20, 8, 11)">Accuracy over speed</h4>
+              <p style="font-family:Lora;font-weight:500;font-size:15.5px;margin:6px 0 0;color:rgba(20,8,11,.72);line-height:1.6;">I'd rather double-check once than apologize twice. Zero processing errors across 3,700+ documents is not a fluke.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:20px;">
+            <div style="flex-shrink:0;width:54px;height:54px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-family:Nunito;font-weight:900;font-size:20px;color:var(--maroon);">02</div>
+            <div>
+              <h4 style="font-size: 18px; color: rgb(20, 8, 11)">Confidentiality, always</h4>
+              <p style="font-family:Lora;font-weight:500;font-size:15.5px;margin:6px 0 0;color:rgba(20,8,11,.72);line-height:1.6;">
+                Executive documents and inboxes pass through my hands every day.
+                Discretion is built into how I work.
+              </p>
+            </div>
+          </div>
+          <div style="display:flex;gap:20px;">
+            <div style="flex-shrink:0;width:54px;height:54px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-family:Nunito;font-weight:900;font-size:20px;color:var(--maroon);">03</div>
+            <div>
+              <h4 style="font-size:18px;">Proactive, not reactive</h4>
+              <p style="font-family:Lora;font-weight:500;font-size:15.5px;margin:6px 0 0;color:rgba(20,8,11,.72);line-height:1.6;">
+                I flag conflicts before they happen and prep the brief before
+                you ask. You shouldn't have to manage your assistant.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ SERVICES ================ -->
+<section id="services" class="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="l">
+        <div class="sec-num">02 · Services</div>
+        <h2 class="sec-title">Six ways I can <em>lighten your load.</em></h2>
+      </div>
+      <p class="sec-lede">
+        From the inbox you've been avoiding to the meeting deck that's due
+        Monday — here's what I'll take off your plate.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-num">/ 01</div>
+        <h3>Executive &amp; Email Support</h3>
+        <p>Inbox triage, professional replies on your behalf, and a calendar that never double-books.</p>
+        <ul>
+          <li>Email triage &amp; drafting</li>
+          <li>Calendar &amp; scheduling</li>
+          <li>Meeting prep &amp; minutes</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">/ 02</div>
+        <h3>Document &amp; Records Management</h3>
+        <p>Clean filing systems, version control, and documents that route to the right desk on the first try.</p>
+        <ul>
+          <li>Digital filing &amp; archiving</li>
+          <li>Document routing &amp; approvals</li>
+          <li>Confidential records handling</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">/ 03</div>
+        <h3>Correspondence &amp; Reports</h3>
+        <p>Polished memos, letters, and accomplishment reports — written in your voice and ready to send.</p>
+        <ul>
+          <li>Memos &amp; official letters</li>
+          <li>Monthly status reports</li>
+          <li>Stakeholder communications</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">/ 04</div>
+        <h3>Procurement &amp; Logistics</h3>
+        <p>Vendor coordination, claims, reimbursements, and event logistics handled end-to-end.</p>
+        <ul>
+          <li>Procurement requests</li>
+          <li>Travel orders &amp; claims</li>
+          <li>Workshop &amp; event logistics</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">/ 05</div>
+        <h3>Data Entry &amp; Research</h3>
+        <p>Tidy spreadsheets, accurate data, and the kind of research that's actually useful by Monday morning.</p>
+        <ul>
+          <li>Data entry &amp; cleaning</li>
+          <li>Light market research</li>
+          <li>List building &amp; CRM hygiene</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">/ 06</div>
+        <h3>AI-Assisted Productivity</h3>
+        <p>I use Gemini for Workspace and other AI tools to draft faster, summarize better, and free up your time.</p>
+        <ul>
+          <li>Gemini-assisted drafting</li>
+          <li>Workflow automation help</li>
+          <li>SOPs &amp; documentation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ TRAINING SPOTLIGHT ================ -->
+<section class="training">
+  <div class="wrap">
+    <div class="training-inner">
+      <div>
+        <div class="label">Recently completed</div>
+        <h2>15-Hour <em>General Virtual Assistant</em> Training</h2>
+        <p style="font-family:Lora;font-weight:500;font-size:16px;margin-top:18px;color:rgba(255,255,255,0.85);line-height:1.65;">
+          Completed with <strong>Freelance Academy</strong> — sharpening the
+          remote-work toolkit, client communication, and the operational
+          rituals every modern VA needs.
+        </p>
+      </div>
+      <div class="training-features">
+        <div class="tf">
+          <div class="h">15<span class="u">hrs</span></div>
+          <div class="l">Of structured, hands-on GVA coursework</div>
+        </div>
+        <div class="tf">
+          <div class="h">8+<span class="u">modules</span></div>
+          <div class="l">Email, calendar, tools, communication, ethics</div>
+        </div>
+        <div class="tf">
+          <div class="h">100%<span class="u">complete</span></div>
+          <div class="l">All assignments &amp; capstones submitted</div>
+        </div>
+        <div class="tf">
+          <div class="h">2026</div>
+          <div class="l">Freshly certified &amp; ready to work remote</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ EXPERIENCE ================ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="l">
+        <div class="sec-num">03 · Experience</div>
+        <h2 class="sec-title">Two years inside a <em>regional government office.</em></h2>
+      </div>
+      <p class="sec-lede">
+        At the Department of Information and Communications Technology Regional
+        Office 1, I was the quiet engine behind thousands of executive documents.
+      </p>
+    </div>
+
+    <div class="exp-grid">
+      <aside class="exp-side">
+        <div class="big-num">4.7k</div>
+        <div class="big-lbl">Documents managed across two project cycles</div>
+        <div class="mini">
+          <div class="mini-stat">
+            <div class="mn">100%</div>
+            <div class="ml">On-time approvals — zero missed deadlines</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mn">370+</div>
+            <div class="ml">Executive emails triaged &amp; responded to</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mn">30+</div>
+            <div class="ml">Trainings, workshops &amp; events coordinated</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mn">100+</div>
+            <div class="ml">Memos, correspondence &amp; reports drafted</div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="timeline">
+        <div class="tl-item current">
+          <div class="tl-date">Jan 2025 — Present</div>
+          <div class="tl-role">Project Development Officer II</div>
+          <div class="tl-org">Digital Government Program · DICT Regional Office 1</div>
+          <ul class="tl-list">
+            <li>Controlled end-to-end document flow for <strong>2,500+ executive-level documents</strong>, ensuring accuracy, proper routing, and on-time approvals across <strong>30+ client agencies</strong>.</li>
+            <li>Managed and tracked <strong>750+ travel orders</strong>, claims, reimbursements, and gas vouchers with zero processing errors.</li>
+            <li>Handled an executive email inbox of <strong>370+ communications</strong>, triaging urgent requests and drafting timely professional responses.</li>
+            <li>Prepared 100+ official correspondence, memoranda, and reports; processed 5+ procurement requests supporting program operations.</li>
+            <li>Coordinated logistics and documentation for <strong>30+ user trainings</strong>, workshops, and stakeholder meetings.</li>
+          </ul>
+          <span class="tl-tag">Current Role</span>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Jul 2023 — Dec 2024</div>
+          <div class="tl-role">Project Development Officer I</div>
+          <div class="tl-org">IBPLS &amp; eLGU Project · DICT Regional Office 1</div>
+          <ul class="tl-list">
+            <li>Processed <strong>2,200+ documents</strong> for the Regional Director's signature with zero missed deadlines.</li>
+            <li>Drafted <strong>100+ correspondence</strong>, reports, and memoranda; processed 10+ procurement requests and organized 20+ project events.</li>
+            <li>Coordinated with LGUs and stakeholders to enforce timely compliance with all project requirements.</li>
+            <li>Maintained systematic filing and archiving systems for efficient document retrieval across the full project lifecycle.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Mar 2023 — Jun 2023</div>
+          <div class="tl-role">On-the-Job Trainee</div>
+          <div class="tl-org">DICT Regional Office 1</div>
+          <ul class="tl-list">
+            <li>Served as <strong>Lead Designer and Front-End Developer</strong> for an internal procurement system — contributed to UI/UX design, component development, and team coordination.</li>
+            <li>Assisted in facilitating trainings and examinations to support organizational operations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ SKILLS ================ -->
+<section id="skills" class="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="l">
+        <div class="sec-num">04 · Skills &amp; Tools</div>
+        <h2 class="sec-title">A toolkit built for <em>remote operations.</em></h2>
+      </div>
+      <p class="sec-lede">
+        Comfortable in modern productivity stacks, document management
+        systems, and AI-assisted workflows. Quick to learn whatever your team
+        already runs on.
+      </p>
+    </div>
+
+    <div class="sk-grid">
+      <div class="sk-col">
+        <h4>Administrative <span class="ic">A</span></h4>
+        <div class="sk-chips">
+          <span class="chip">Executive Assistance</span>
+          <span class="chip">Email Management</span>
+          <span class="chip">Calendar Management</span>
+          <span class="chip">Document Control</span>
+          <span class="chip">Procurement Support</span>
+          <span class="chip">Stakeholder Coordination</span>
+          <span class="chip">Report Preparation</span>
+          <span class="chip">Confidential Records</span>
+        </div>
+      </div>
+      <div class="sk-col">
+        <h4>Technical <span class="ic">T</span></h4>
+        <div class="sk-chips">
+          <span class="chip">HTML / CSS</span>
+          <span class="chip">Front-End Basics</span>
+          <span class="chip">Data Entry &amp; Analysis</span>
+          <span class="chip">UI/UX Design</span>
+          <span class="chip">Gemini for Workspace</span>
+          <span class="chip">AI-Assisted Drafting</span>
+          <span class="chip">Workflow Automation</span>
+        </div>
+      </div>
+      <div class="sk-col">
+        <h4>Soft Skills <span class="ic">S</span></h4>
+        <div class="sk-chips">
+          <span class="chip">Attention to Detail</span>
+          <span class="chip">Time Management</span>
+          <span class="chip">Discretion</span>
+          <span class="chip">Written Communication</span>
+          <span class="chip">Cross-Team Coordination</span>
+          <span class="chip">Adaptability</span>
+          <span class="chip">Problem Solving</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tools-row">
+      <div class="tlbl">— Daily Drivers</div>
+      <div class="tools">
+        <div class="tool"><div class="ic">G</div><div class="nm">Google Workspace</div></div>
+        <div class="tool"><div class="ic">M</div><div class="nm">Microsoft Office</div></div>
+        <div class="tool"><div class="ic">T</div><div class="nm">Trello</div></div>
+        <div class="tool"><div class="ic">Z</div><div class="nm">Zoom</div></div>
+        <div class="tool"><div class="ic">N</div><div class="nm">Notion</div></div>
+        <div class="tool"><div class="ic">C</div><div class="nm">Canva</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ CREDENTIALS ================ -->
+<section id="credentials">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="l">
+        <div class="sec-num">05 · Credentials</div>
+        <h2 class="sec-title">Education &amp; <em>Certifications.</em></h2>
+      </div>
+      <p class="sec-lede">
+        A foundation in Information Technology, sharpened with industry
+        certifications and continuous learning.
+      </p>
+    </div>
+
+    <div class="credentials-grid">
+      <div class="cred-block">
+        <h3>Education</h3>
+        <div class="cred-item">
+          <div class="top">
+            <div>
+              <div class="name">BS Information Technology</div>
+              <div class="from">Don Mariano Marcos Memorial State University</div>
+              <span class="cred-honor">Magna Cum Laude</span>
+            </div>
+            <div class="yr">2019 — 2023</div>
+          </div>
+        </div>
+
+        <div class="cred-item">
+          <div class="top">
+            <div>
+              <div class="name">DOST-TAPI Sibol Award — 2nd Placer</div>
+              <div class="from">Department of Science &amp; Technology</div>
+            </div>
+            <div class="yr">2023</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cred-block">
+        <h3>Certifications</h3>
+        <div class="cred-item">
+          <div class="top">
+            <div>
+              <div class="name">15-Hour GVA Training</div>
+              <div class="from">Freelance Academy</div>
+            </div>
+            <div class="yr">May 2026</div>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="top">
+            <div>
+              <div class="name">GovMail AI-Enabled Productivity with Gemini for Workspace</div>
+              <div class="from">Google Philippines</div>
+            </div>
+            <div class="yr">Sep 2025</div>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="top">
+            <div>
+              <div class="name">ICT Proficiency Diagnostic Exam Passer</div>
+              <div class="from">DICT Region I</div>
+            </div>
+            <div class="yr">Apr 2023</div>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="top">
+            <div>
+              <div class="name">PhilNITS IT Passport</div>
+              <div class="from">PhilNITS</div>
+            </div>
+            <div class="yr">Oct 2022</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ CONTACT ================ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <div class="contact-inner">
+        <div>
+          <div class="sec-num" style="color:#F4A2A8;">06 · Let's Work Together</div>
+          <h2 style="margin-top:14px;">Need a <em>steady pair of hands</em> behind the scenes?</h2>
+          <p class="lede">
+            I'm taking on new clients for remote administrative and virtual
+            assistant work. Tell me what's on your plate — I'll help you carry it.
+          </p>
+        </div>
+        <div class="contact-links">
+          <a class="clink" href="mailto:juanettecataleneb.lictaoa@gmail.com">
+            <div class="ic">@</div>
+            <div class="meta">
+              <span class="k">Email</span>
+              <span class="v">juanettecataleneb.lictaoa@gmail.com</span>
+            </div>
+          </a>
+          <a class="clink" href="tel:+639056652998">
+            <div class="ic">☏</div>
+            <div class="meta">
+              <span class="k">Phone</span>
+              <span class="v">+63 905 665 2998</span>
+            </div>
+          </a>
+          <a class="clink" href="https://linkedin.com/in/juanette-catalene-lictaoa" target="_blank" rel="noopener">
+            <div class="ic">in</div>
+            <div class="meta">
+              <span class="k">LinkedIn</span>
+              <span class="v">/in/juanette-catalene-lictaoa</span>
+            </div>
+          </a>
+          <a class="clink" href="#">
+            <div class="ic">⌖</div>
+            <div class="meta">
+              <span class="k">Location</span>
+              <span class="v">Agoo, La Union · Philippines</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:16px;">
+    <div class="fl">© 2026 Juanette Catalene B. Lictaoa · Designed with care.</div>
+    <div class="fr">Crafted in Agoo, La Union 🇵🇭</div>
+  </div>
+</footer>
+
 </body>
 </html>
